@@ -30,5 +30,3 @@ def ExecuteQuery(query, cur, conn):
     except Exception as e:
         conn.rollback()
         print(e)
-    else:
-        conn.commit()
