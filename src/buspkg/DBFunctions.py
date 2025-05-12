@@ -24,9 +24,15 @@ def GetDefaultConnection():
         print(f"Error connecting to the database: {e}")
         return None
     
-def ExecuteQuery(query, cur, conn):
+def ExecuteQuery(query, cur, conn, data=None):
     try:
-        cur.execute(query)    
+        cur.execute(query, data)
     except Exception as e:
         conn.rollback()
         print(e)
+
+def WriteBatchToDB(batch, tableName, cur, conn):
+    valuePlaceHolders = ", ".join(["%s"] * len(batch[0]))
+    query = f"INSERT INTO {tableName} VALUES ({valuePlaceHolders});"
+
+    ExecuteQuery(query, cur, conn, batch)
