@@ -143,6 +143,13 @@ def ProcessRawTripFile(filePath, encoding):
     return batch
 
 
+def StripCNPJFromName(name):
+    name = name[:-19]
+
+    if name[-1] == '-':
+        name = name[:-2]
+    return name
+
 def GetPickleCheckpoint(picklePath):
     ''' 
         Loads content from a pickle file. Returns `None` if file does not exist.
