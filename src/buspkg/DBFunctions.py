@@ -29,10 +29,11 @@ def ExecuteQuery(query, cur, conn, data=None):
         cur.execute(query, data)
     except Exception as e:
         conn.rollback()
-        print(e)
+        raise e
 
 def WriteBatchToDB(batch, tableName, cur, conn):
     valuePlaceHolders = ", ".join(["%s"] * len(batch[0]))
     query = f"INSERT INTO {tableName} VALUES ({valuePlaceHolders});"
 
-    ExecuteQuery(query, cur, conn, batch)
+    for entry in batch:
+        ExecuteQuery(query, cur, conn, entry)
