@@ -11,7 +11,7 @@ beautifulsoup4==4.13.4
 behave==1.2.6
 bleach==6.2.0
 blinker==1.9.0
--e git+https://github.com/Juliano-Pasa/Bus-Trips-In-Brazil.git@f7d1cf6ee5a999b5c314106bb1d0c13d10050e1e#egg=buspkg
+-e git+https://github.com/Juliano-Pasa/Bus-Trips-In-Brazil.git@dfb9aac289ecda5e76adcb640e4cd132fed0f720#egg=buspkg
 cachetools==5.5.2
 certifi==2025.1.31
 cffi==1.17.1
