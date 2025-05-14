@@ -1,5 +1,6 @@
 import os
 import psycopg2
+from psycopg2.extras import execute_values
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -30,6 +31,13 @@ def ExecuteQuery(query, cur, conn, data=None):
     except Exception as e:
         conn.rollback()
         raise e
+    
+def ExecuteValues(query, cur, conn, data):
+    try:
+        execute_values(cur, query, data)
+    except Exception as e:
+        conn.rollback()
+        raise e        
 
 def WriteBatchToDB(batch, tableName, cur, conn):
     valuePlaceHolders = ", ".join(["%s"] * len(batch[0]))
